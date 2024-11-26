@@ -1,0 +1,14 @@
+com\jsfcourse\entities\Type.class
+com\jsfcourse\entities\User.class
+com\jsfcourse\entities\OrderProductPK.class
+com\jsfcourse\entities\Product.class
+com\jsfcourse\type\TypeListBB.class
+com\jsfcourse\type\TypeEditBB.class
+com\jsfcourse\entities\CatalogUserPK.class
+com\jsfcourse\entities\CatalogUser.class
+com\jsfcourse\entities\Catalog.class
+com\jsfcourse\entities\OrderProduct.class
+com\jsfcourse\entities\State.class
+com\jsfcourse\entities\Addres.class
+com\jsfcourse\entities\Order1.class
+com\jsfcourse\dao\TypeDAO.class

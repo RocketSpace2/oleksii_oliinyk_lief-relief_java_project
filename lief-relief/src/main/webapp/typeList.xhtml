@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <title>EJB_JSF_7</title>
+    </h:head>
+    <h:body style="background-color: #eee; margin: 0.5em;">
+
+        <p:panel header="Opcje wyszukiwania" toggleable="true" collapsed="true"
+                 style="margin-bottom: 1em;">
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel value="Nazwa rodzaju:" />
+                    <p:inputText value="#{typeListBB.typeName}" />
+                    <p:commandButton value="Szukaj" update="form-table" />
+                </h:panelGrid>
+            </h:form>
+        </p:panel>
+
+        <p:messages />
+
+        <h:form id="form-table" style="margin-bottom:1em;">
+            
+            <p:commandButton value="Dodaj nowy rodzaj" style="margin-bottom:1em;" 
+                             action="#{typeListBB.newType()}"/>
+
+            <p:dataTable value="#{typeListBB.list}" var="t">
+
+                <p:column responsivePriority="5">
+                    <f:facet name="header">
+                        <h:outputText value="Id rodzaju" />
+                    </f:facet>
+                    <h:outputText value="#{t.idType}" />
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nazwa rodzaju" />
+                    </f:facet>
+                    <h:outputText value="#{t.typeName}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Opcje" />
+                    </f:facet>
+
+                    <p:commandButton value="Edytuj" style="margin-right: 0.5em"
+                        action="#{typeListBB.editType(t)}"/>
+
+                    <p:commandButton value="Usuń" style="margin-right: 0.5em"
+                        action="#{typeListBB.deleteType(t)}"
+                        update="@form" />
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+    </h:body>
+</html>
