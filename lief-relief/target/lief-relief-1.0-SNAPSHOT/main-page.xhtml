@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <!-- Banner -->
+    <section id="banner">
+        <div class="content">
+            <header>
+                <h1>Leaf Relief</h1>
+                <p>Opis sklepu</p>
+            </header>
+            <p>
+                Leaf Relief to nowoczesny sklep rolniczy, stworzony z myślą o potrzebach współczesnych rolników. Nasza oferta obejmuje szeroki asortyment produktów niezbędnych do prowadzenia gospodarstwa rolnego. W naszym sklepie znajdziesz najwyższej jakości nasiona, nawozy, środki ochrony roślin oraz sprzęt rolniczy od renomowanych producentów.
+            </p>
+        </div>
+        <span class="image object">
+            <h:graphicImage library="template" name="images/field.png" alt="" />
+        </span>
+    </section>
+
+    <!-- Section -->
+    <section id="about">
+        <header class="major">
+            <h2>O nas</h2>
+        </header>
+        <div class="features">
+            <article>
+                <span class="icon" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+                    <h:graphicImage library="template" name="images/tournament-cup.png" style="width: 60%;" alt="#" />
+                </span>
+                <div class="content">
+                    <h3>Najlepsi na rynku</h3>
+                    <p>
+                        Leaf Relief oferuje produkty od renomowanych producentów, gwarantując najwyższą jakość. Nasze doświadczenie i zaangażowanie sprawiają, że jesteśmy liderem na rynku rolniczym.
+                    </p>
+                </div>
+            </article>
+            <article>
+                <span class="icon" style="text-align: center; display: flex; justify-content: center; align-items: center;">
+                    <h:graphicImage library="template" name="images/box.png" style="width: 65%; height: 65%;" alt="#" />
+                </span>
+                <div class="content">
+                    <h3>Odbiór osobisty </h3>
+                    <p>
+                        Zapewniamy wygodny odbiór osobisty zamówień. Nasz sklep jest łatwo dostępny, a proces odbioru szybki i bezproblemowy, co pozwala na indywidualną obsługę.
+                    </p>
+                </div>
+            </article>
+            <article>
+                <span class="icon fa-gem"></span>
+                <div class="content">
+                    <h3>Gwarancja jakości</h3>
+                    <p>
+                        Produkty Leaf Relief są starannie wyselekcjonowane i pochodzą od sprawdzonych dostawców. Gwarantujemy najwyższą jakość, co przekłada się na efektywność i bezpieczeństwo w rolnictwie.
+                    </p>
+                </div>
+            </article>
+            <article>
+                <span class="icon solid fa-rocket"></span>
+                <div class="content">
+                    <h3>Szybka dostawa </h3>
+                    <p>
+                        Oferujemy szybką i niezawodną dostawę zamówień. Realizujemy je w najkrótszym możliwym czasie, abyś mógł szybko korzystać z naszych produktów.
+                    </p>
+                </div>
+            </article>
+        </div>
+        <hr class="major" />
+        
+        <h:link outcome="/productList" style="display: flex; height: 60px; align-items: center; justify-content: center;" class="button primary">
+            Katalog produktów
+        </h:link>
+    </section>
+</ui:composition>

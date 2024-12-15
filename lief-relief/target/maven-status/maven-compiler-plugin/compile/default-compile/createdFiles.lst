@@ -1,9 +1,12 @@
 com\jsfcourse\entities\Type.class
 com\jsfcourse\entities\User.class
+com\jsfcourse\product\ProductEditBB.class
 com\jsfcourse\entities\OrderProductPK.class
 com\jsfcourse\entities\Product.class
 com\jsfcourse\type\TypeListBB.class
 com\jsfcourse\type\TypeEditBB.class
+com\jsfcourse\product\ProductListBB.class
+com\jsfcourse\dao\ProductDAO.class
 com\jsfcourse\entities\CatalogUserPK.class
 com\jsfcourse\entities\CatalogUser.class
 com\jsfcourse\entities\Catalog.class

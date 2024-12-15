@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      lang="pl">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <title>Leaf Relief</title>
+        <h:outputStylesheet name="css/main.css" library="template" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+        <h:outputStylesheet name="css/fontawesome-all.min.css" library="template" />
+	<link type="image/x-icon" rel="shortcut icon" href="#{resource['template/images/icon/leaf-relief.png']}" />
+    </h:head>
+
+    <h:body class="is-preload">
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+
+                    <!-- Header -->
+                    <header id="header">
+                        <h:link outcome="index" class="logo">
+                            <strong>Leaf</strong> Relief
+                        </h:link>
+                        <ul class="icons">
+                            <li>
+                                <a href="https://github.com/RocketSpace2" target="_blank" class="icon brands fa-github">
+                                    <span class="label">Github</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/_rocketspace_/" target="_blank" class="icon brands fa-instagram">
+                                    <span class="label">Instagram</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </header>
+
+                    <ui:insert name="content">
+                        <ui:include src="/main-page.xhtml" />
+                    </ui:insert>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <div class="inner">
+                    <br />
+                    <!-- Menu -->
+                    <nav id="menu">
+                        <header class="major">
+                            <h2>
+                                <a href="#{yourBean.profileAction}">
+                                    <h:graphicImage library="template" name="images/profile.png" width="12%" height="12%" alt="#" />
+                                    #{yourBean.login != null ? yourBean.login : 'Gość'}
+                                </a>
+                            </h2>
+                            <h2 style="display: inline-block;">
+                                <a href="#{yourBean.shopingCartAction}">
+                                    <h:graphicImage library="template" name="images/shoping-cart.png" width="12%" height="12%" alt="#" />
+                                    #{yourBean.productAmount != null ? 'Ilość: ' + yourBean.productAmount : 'Pusty'}
+                                </a>
+                            </h2>
+                            <h2>Menu</h2>
+                        </header>
+                        <ul>
+                            <li><a href="#{yourBean.mainAction}">Strona główna</a></li>
+                            <ui:fragment rendered="#{yourBean.isWorker}">
+                                <li><a href="#{yourBean.productsListWorkerAction}">Lista produktów</a></li>
+                                <li><a href="#{yourBean.ordersAction}">Zamówienia</a></li>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{yourBean.isAdmin}">
+                                <li><a href="#{yourBean.usersListAction}">Użytkownicy</a></li>
+                            </ui:fragment>
+                            <li><a href="#{yourBean.productsListAction}">Produkty</a></li>
+                            <li><a href="#{yourBean.mainAction}#about">O nas</a></li>
+                        </ul>
+                    </nav>
+
+                    <ui:fragment rendered="#{yourBean.isUser == null}">
+                        <div class="col-6 col-12-small">
+                            <ul class="actions stacked">
+                                <li><a href="#{yourBean.loginAction}" class="button primary fit">Zaloguj się</a></li>
+                                <li><a href="#{yourBean.registrationAction}" class="button fit">Zarejestruj się</a></li>
+                            </ul>
+                        </div>
+                    </ui:fragment>
+
+                    <ui:fragment rendered="#{yourBean.isUser != null}">
+                        <div class="col-6 col-12-small">
+                            <ul class="actions stacked">
+                                <li><a href="#{yourBean.logoutAction}" class="button primary fit">Wyloguj się</a></li>
+                            </ul>
+                        </div>
+                    </ui:fragment>
+
+                    <!-- Section -->
+                    <section>
+                        <header class="major">
+                            <h2>Skontaktuj się z nami</h2>
+                        </header>
+                        <p>
+                            Znajdziesz tu nasze dane kontaktowe. Jesteśmy do Twojej dyspozycji, aby pomóc i odpowiedzieć na wszelkie pytania dotyczące naszych produktów i usług.
+                        </p>
+                        <ul class="contact">
+                            <li class="icon solid fa-envelope">
+                                <a href="mailto:rocketspace@example.com">rocketspace@example.com</a>
+                            </li>
+                            <li class="icon solid fa-phone">(000) 000-0000</li>
+                            <li class="icon solid fa-home">1234 Somewhere Road #8254<br />Nashville, TN 00000-0000</li>
+                        </ul>
+                    </section>
+
+                    <!-- Footer -->
+                    <footer id="footer">
+                        <p> Design: <a href="https://html5up.net">HTML5 UP</a></p>
+                        <span>
+                            Implementation: <a href="https://github.com/RocketSpace2" target="_blank"><span>RocketSpace</span></a>
+                        </span>
+                        <p class="copyright"> RocketSpace </p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <h:outputScript library="js" name="jquery.min.js" />
+        <h:outputScript library="js" name="browser.min.js" />
+        <h:outputScript library="js" name="breakpoints.min.js" />
+        <h:outputScript library="js" name="util.js" />
+        <h:outputScript library="js" name="main.js" />
+    </h:body>
+</html>

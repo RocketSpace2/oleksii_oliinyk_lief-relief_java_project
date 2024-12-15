@@ -25,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.Collection;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
@@ -121,16 +122,13 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getImage() {
+        String tmp = "data:image/png;base64," + Base64.getEncoder().encodeToString(image);
+        return tmp;
     }
 
-    public void setImage(UploadedFile uploadedFile) {
-        try (InputStream inputStream = uploadedFile.getInputStream()) {
-            this.image = convertFileToByteArray(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setImage(byte[] image) {
+       this.image = image;
     }
 
     public Type getIdType() {
