@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui"
+  template="/templates/index.xhtml">
+    <ui:define name="content">
+        <section>
+            <header class="main">
+                <h1>Leaf Relief</h1>
+            </header>
+
+            <hr class="major" />
+
+            <!-- Display Error Messages -->
+            <h:messages globalOnly="true" styleClass="error" layout="list" />
+
+            <!-- Registration Form -->
+            <h:form id="registrationForm">
+                <div class="row gtr-uniform">
+                    <div class="col-6 col-12-xsmall">
+                        <p:inputText id="login" value="#{registrationBB.login}" placeholder="Login*" required="true" />
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                        <p:password id="password" value="#{registrationBB.pass}" placeholder="Password*" required="true" />
+                    </div>
+                </div>
+
+                <br />
+                <h3>Adres</h3>
+                <div class="row gtr-uniform">
+                    <div class="col-6 col-12-xsmall">
+                        <p:inputText id="city" value="#{registrationBB.city}" placeholder="Miasto*" required="true" />
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                        <p:inputText id="postcode" value="#{registrationBB.postcode}" placeholder="Kod pocztowy*" required="true" />
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                        <p:inputText id="street" value="#{registrationBB.street}" placeholder="Ulica*" required="true" />
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                        <p:inputText id="street_number" value="#{registrationBB.streetNumber}" placeholder="Numer ulicy*" required="true" />
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                        <p:inputText id="apartment_number" value="#{registrationBB.apartmentNumber}" placeholder="Numer lokalu" />
+                    </div>
+                </div>
+
+                <br />
+                <div>
+                    <span>* — pole jest wymagane</span>
+                </div>
+
+                <div class="row gtr-uniform" style="display: grid; width: 100%;">
+                    <div>
+                        <br />
+                        <div style="display: inline-block; width: 100%; padding-left: 0%;">
+                            <p:commandButton value="Zarejestruj się"
+                                             action="#{registrationBB.registrate()}"
+                                             styleClass="primary fit"/>
+                        </div>
+                        <br />
+                        <br />
+                        <h:link outcome="/public/login.xhtml"
+                                styleClass="button fit">
+                            Zaloguj się
+                        </h:link>
+                    </div>
+                </div>
+            </h:form>
+        </section>
+    </ui:define>
+</ui:composition>

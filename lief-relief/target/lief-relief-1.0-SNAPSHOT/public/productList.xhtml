@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+                template="/templates/index.xhtml">
+    
+    <ui:define name="content">
+        <!-- Products Section -->
+        <section id="products">
+
+            
+            <!-- Search Section -->
+            <section id="search" class="alt">
+                <h:form id="product_search" style="display: inline-block; width: 70%;">
+                    <p:inputText id="query" value="#{productListBB.productName}" 
+                                 style="width: 100%;" 
+                                 placeholder="Nazwa produktu" />    
+                </h:form>
+                <p:commandButton class="primary" style="display: inline-block; width: 20%; padding-bottom: 0%; vertical-align: 5%;"
+                                     value="Wyszukaj" update="productList" process="product_search" />
+
+            </section>
+
+            <hr class="major" />
+
+            <!-- Product List -->
+            <h:panelGroup id="productList">
+                <div class="posts" >
+                    <c:forEach var="product" items="#{productListBB.list}">
+                        <article>
+                            <!--<h:form>-->
+                                <a style="display: block; width: 35%; margin-left: auto; margin-right: auto;" 
+                                   class="image">
+                                    <img src="#{product.image}"/>
+                                </a>
+                                <div style="display: inline-block; width: 100%;">
+                                    <h3 style="display: inline-block; width: 35%;">#{product.name}</h3>
+                                    <div style="display: inline-block; width: 64%;">
+                                        <span style="text-align: right; display: inline-block; width: 100%;">
+                                            Cena: <strong style="font-size: 1.15em;">#{product.price} zł</strong>
+                                        </span>
+                                        <span style="text-align: right; display: inline-block; width: 100%;">
+                                            Typ: <strong style="font-size: 1.15em;">#{product.idType.typeName}</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <h:outputText value="#{fn:length(product.description) > 260 
+                                                       ? fn:substring(product.description, 0, 260).concat('...') 
+                                                       : product.description}" />
+                                <ul class="actions">
+                                    <li>
+                                        <p>development</p>
+                                        <p:commandButton value="więcej" style="margin-right: 0.5em"
+                                                        action="#{productListBB.showProduct(product)}"/>
+                                    </li>
+                                </ul>
+<!--                            </h:form>-->
+                        </article>
+                    </c:forEach>
+                </div>
+            </h:panelGroup>
+        </section>
+    </ui:define>
+</ui:composition>

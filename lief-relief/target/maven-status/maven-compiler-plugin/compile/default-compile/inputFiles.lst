@@ -1,5 +1,12 @@
+D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jfcourse\authentication\LoginBB.java
+D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jfcourse\authentication\RegistrationBB.java
+D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jfcourse\user_list\UserListBB.java
+D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\dao\AddresDAO.java
+D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\dao\CatalogUserDAO.java
+D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\dao\CatalogUserPKDAO.java
 D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\dao\ProductDAO.java
 D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\dao\TypeDAO.java
+D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\dao\UserDAO.java
 D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\entities\Addres.java
 D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\entities\Catalog.java
 D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\entities\CatalogUser.java
@@ -13,5 +20,8 @@ D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\li
 D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\entities\User.java
 D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\product\ProductEditBB.java
 D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\product\ProductListBB.java
+D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\product\SingleProductBB.java
 D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\type\TypeEditBB.java
 D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\com\jsfcourse\type\TypeListBB.java
+D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\jakarta\faces\simplesecurity\RemoteClient.java
+D:\Work\Programing\NetBeans Projects\oleksii_oliinyk_lief-relief_java_project\lief-relief\src\main\java\jakarta\faces\simplesecurity\SecurityFilter.java

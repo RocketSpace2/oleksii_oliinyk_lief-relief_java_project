@@ -26,7 +26,7 @@
 
                     <!-- Header -->
                     <header id="header">
-                        <h:link outcome="index" class="logo">
+                        <h:link outcome="/public/main-page" class="logo">
                             <strong>Leaf</strong> Relief
                         </h:link>
                         <ul class="icons">
@@ -44,7 +44,6 @@
                     </header>
 
                     <ui:insert name="content">
-                        <ui:include src="/main-page.xhtml" />
                     </ui:insert>
                 </div>
             </div>
@@ -71,33 +70,36 @@
                             <h2>Menu</h2>
                         </header>
                         <ul>
-                            <li><a href="#{yourBean.mainAction}">Strona główna</a></li>
-                            <ui:fragment rendered="#{yourBean.isWorker}">
+                            <li><h:link outcome="/public/main-page" >strona główna</h:link></li>
+                            <ui:fragment rendered="#{loginBB.isInRole('worker')}">
                                 <li><a href="#{yourBean.productsListWorkerAction}">Lista produktów</a></li>
                                 <li><a href="#{yourBean.ordersAction}">Zamówienia</a></li>
                             </ui:fragment>
-                            <ui:fragment rendered="#{yourBean.isAdmin}">
-                                <li><a href="#{yourBean.usersListAction}">Użytkownicy</a></li>
+                            <ui:fragment rendered="#{loginBB.isInRole('admin')}">
+                                <li><h:link outcome="/admin/user-list.xhtml" >Użytkownicy</h:link></li>
                             </ui:fragment>
-                            <li><a href="#{yourBean.productsListAction}">Produkty</a></li>
-                            <li><a href="#{yourBean.mainAction}#about">O nas</a></li>
+                            <li><h:link outcome="/public/productList" >produkty</h:link></li>
+                            <li><h:link outcome="/public/main-page" fragment="about" >o nas</h:link></li>
                         </ul>
                     </nav>
 
-                    <ui:fragment rendered="#{yourBean.isUser == null}">
+                    <ui:fragment rendered="#{!loginBB.isInRole('user')}">
                         <div class="col-6 col-12-small">
                             <ul class="actions stacked">
-                                <li><a href="#{yourBean.loginAction}" class="button primary fit">Zaloguj się</a></li>
-                                <li><a href="#{yourBean.registrationAction}" class="button fit">Zarejestruj się</a></li>
+                                <li><h:link outcome="/public/login.xhtml" class="button primary fit" >Zaloguj się</h:link></li>
+                                <li><h:link outcome="/public/registration.xhtml" class="button fit" >Zarejestruj się</h:link></li>
                             </ul>
                         </div>
                     </ui:fragment>
 
-                    <ui:fragment rendered="#{yourBean.isUser != null}">
+                    <ui:fragment rendered="#{loginBB.isInRole('user')}">
                         <div class="col-6 col-12-small">
-                            <ul class="actions stacked">
-                                <li><a href="#{yourBean.logoutAction}" class="button primary fit">Wyloguj się</a></li>
-                            </ul>
+                            <h:form>
+                                <ul class="actions stacked">
+                                    <li><p:commandButton value="Wyloguj się" action="#{loginBB.doLogout()}" 
+                                                         class="primary primary fit"/></li>
+                                </ul>
+                            </h:form>
                         </div>
                     </ui:fragment>
 

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  template="/templates/index.xhtml">
+    <ui:define name="content">
+        <h2>Użytkownicy</h2>
+        <section id="search" class="alt">
+            <h:form id="user-search" style="display: inline-block; width: 40%;">
+                <p:inputText type="text" value="#{userListBB.login}" id="query" placeholder="Login użytkownika" />
+            </h:form>
+            <div style="display: inline-block; vertical-align: 5%;">
+                <p:commandButton value="Role nie aktywne" action="#{userListBB.setDeactivated()}" update="usersList" form="user-search"/>
+                <p:commandButton value="Role aktywne" action="#{userListBB.setActivated()}" update="usersList" form="user-search"/>
+                <p:commandButton class="primary" value="Wyszukaj" action="#{userListBB.searchLogin()}" update="usersList" form="user-search"/>
+            </div>
+        </section>
+
+        <h:panelGroup id="usersList">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Login</th>
+                            <th>Rola</th>
+                            <th>Data aktywacji roli</th>
+                            <th>Data deaktywacji roli</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through catalog_users -->
+                        <ui:repeat var="catalogUser" value="#{userListBB.catalogUsers}">
+                            <tr rendered="#{catalogUser.dateOfDeactivation == null}">
+                                <td>
+                                    <h:outputText value="#{catalogUser.user.login}" />
+                                </td>
+                                <td>
+                                    <h:outputText value="#{catalogUser.catalog.roleName}"/>
+                                </td>
+                                <td>
+                                    <h:outputText value="#{catalogUser.dateOfActivation}"/>
+                                </td>
+                                <td>
+                                    <h:outputText value="#{catalogUser.dateOfDeactivation}" rendered="#{catalogUser.dateOfDeactivation != null}"/>
+                                    <h:outputText value="—" rendered="#{catalogUser.dateOfDeactivation == null}"/>
+                                </td>
+                                <td>
+                                    <h:form style="display: inline" rendered="#{catalogUser.catalog.roleName == 'user'}">
+                                        <h:commandButton  value="Edytuj" action="#" />
+                                    </h:form>
+                                    <h:form style="display: inline" rendered="#{catalogUser.catalog.roleName == 'user'}">
+                                        <h:commandButton value="Usuń" styleClass="primary" action="#{userListBB.deleteUser(catalogUser.user)}" />
+                                    </h:form>
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </div>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>

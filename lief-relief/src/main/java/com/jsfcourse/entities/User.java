@@ -59,7 +59,7 @@ public class User implements Serializable {
     private Collection<CatalogUser> catalogUserCollection;
     @JoinColumn(name = "id_addres", referencedColumnName = "id_addres")
     @ManyToOne(optional = false)
-    private Addres idAddres;
+    private Addres addres;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
     private Collection<Order1> order1Collection;
 
@@ -116,12 +116,12 @@ public class User implements Serializable {
         this.catalogUserCollection = catalogUserCollection;
     }
 
-    public Addres getIdAddres() {
-        return idAddres;
+    public Addres getAddres() {
+        return addres;
     }
 
-    public void setIdAddres(Addres idAddres) {
-        this.idAddres = idAddres;
+    public void setAddres(Addres idAddres) {
+        this.addres = idAddres;
     }
 
     public Collection<Order1> getOrder1Collection() {

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+                template="/templates/index.xhtml">
+    
+    <ui:define name="content">
+
+    <!-- Content -->
+    <section id="banner">
+        <div class="content" style="display: block; width: 50%;">
+            <header>
+                <h1>#{singleProductBB.product.name}</h1>
+                <span>Cena: </span>
+                <h3>#{singleProductBB.product.price} zł</h3>
+            </header>
+
+            <h:form id="addProductForm">
+                <h:inputText id="amount"
+                             style="display: inline; width: 25%;"
+                             value=""
+                             required="true"/>
+                <br/><br/>
+                <p:commandButton value="Do koszyka"
+                                 style="display: inline-block; width: 100%;"
+                                 action="#"
+                                 process="@form"
+                                 update="@none">
+                    <f:param name="productName" value="#{singleProductBB.product.name}" />
+                </p:commandButton>
+            </h:form>
+        </div>
+
+        <span style="display: block; width: 30%;" class="image object">
+            <h:graphicImage value="#{singleProductBB.product.image}" alt="Product Image" />
+        </span>
+    </section>
+
+    <hr class="major" />
+
+    <article>
+        <h2>Opis produktu</h2>
+        <p>#{singleProductBB.product.description}</p>
+    </article>
+
+    <hr class="major"/>
+
+    <h:link style="display: flex; height: 60px; align-items: center; justify-content: center;"
+            outcome="/public/productList.xhtml"
+            styleClass="button primary"
+            value="Katalog produktów" />
+    <br/><br/>
+
+    </ui:define>
+</ui:composition>

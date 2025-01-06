@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  template="/templates/index.xhtml">
+    <ui:define name="content">
+        <h2>Użytkownicy</h2>
+        <br />
+
+        <div class="table-wrapper">
+            <h:form id="edit-user">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Login</th>
+                            <th>Rola</th>
+                            <th>Data aktywacji</th>
+                            <th>Data deaktywacji</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ui:repeat var="row" value="#{userListBB1.users}">
+                            <tr>
+                                <ui:repeat var="entry" value="#{row.entrySet()}">
+                                    <ui:param name="key" value="#{entry.key}" />
+                                    <ui:param name="data" value="#{entry.value}" />
+
+                                    <h:panelGroup>
+                                        <ui:fragment rendered="#{key == 'role_name'}">
+                                            <td>
+                                                <h:selectOneMenu value="#{row.role}">
+                                                    <f:selectItem itemValue="1" itemLabel="Użytkownik" />
+                                                    <f:selectItem itemValue="2" itemLabel="Pracownik" />
+                                                    <f:selectItem itemValue="3" itemLabel="Administrator" />
+                                                </h:selectOneMenu>
+                                            </td>
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{data == null}">
+                                            <td>—</td>
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{key != 'role_name' and data != null}">
+                                            <td><h:outputText value="#{data}" /></td>
+                                        </ui:fragment>
+                                    </h:panelGroup>
+                                </ui:repeat>
+
+                                <td>
+                                    <h:commandButton value="Edytuj" styleClass="primary" action="#{userListBB1.editUser}" />
+                                </td>
+                            </tr>
+                        </ui:repeat>
+                    </tbody>
+                </table>
+            </h:form>
+        </div>
+
+    </ui:define>
+</ui:composition>

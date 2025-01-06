@@ -18,6 +18,7 @@ import jakarta.faces.context.Flash;
 public class ProductListBB {
 	private static final String PAGE_PERSON_EDIT = "productEdit?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = "productList?faces-redirect=true";
+        private static final String PAGE_GO_TO_PRODUCT = "product?faces-redirect=true";
 
 	private String productName;
 		
@@ -86,4 +87,9 @@ public class ProductListBB {
 		productDAO.remove(product);
 		return PAGE_STAY_AT_THE_SAME;
 	}
+        
+        public String showProduct(Product product){
+            flash.put("product", product);
+            return PAGE_GO_TO_PRODUCT;
+        }
 }

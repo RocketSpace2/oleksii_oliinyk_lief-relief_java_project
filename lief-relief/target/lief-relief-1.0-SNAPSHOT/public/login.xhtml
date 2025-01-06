@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui"
+  template="/templates/index.xhtml">
+    <ui:define name="content">
+        <!-- Content -->
+        <section>
+            <header class="main">
+                <h1>Leaf Relief</h1>
+            </header>
+
+            <hr class="major" />
+
+            <!-- Display Messages -->
+            <h:messages globalOnly="true" styleClass="error" layout="list" />
+
+            <!-- Login Form -->
+            <h:form id="loginForm">
+                <div class="row gtr-uniform">
+                    <div class="col-6 col-12-xsmall">
+                        <p:inputText id="username" value="#{loginBB.login}" placeholder="Login" required="true" />
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                        <p:password id="password" value="#{loginBB.pass}" placeholder="Password" required="true" />
+                    </div>
+                </div>
+
+                <!-- Submit and Registration Buttons -->
+                <div class="actions">
+                    <ul class="actions stacked">
+                        <li>
+                            <p:commandButton value="Zaloguj się" action="#{loginBB.doLogin(loginBB.login)}" styleClass="primary fit"
+                                             process="loginForm"
+                                             style="margin-top: 1.3em" />
+                        </li>
+                        <li>
+                            <h:link outcome="/public/registration.xhtml" class="button fit">Zarejestruj się</h:link>
+                        </li>
+                    </ul>
+                </div>
+            </h:form>
+        </section>
+    </ui:define>
+</ui:composition>

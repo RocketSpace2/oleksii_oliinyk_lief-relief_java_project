@@ -63,7 +63,7 @@ public class Addres implements Serializable {
     private int streetNumber;
     @Column(name = "apartment_number")
     private Integer apartmentNumber;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAddres")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "addres")
     private Collection<User> userCollection;
 
     public Addres() {
