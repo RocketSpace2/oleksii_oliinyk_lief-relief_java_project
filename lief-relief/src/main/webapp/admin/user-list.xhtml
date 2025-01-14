@@ -50,10 +50,10 @@
                                 </td>
                                 <td>
                                     <h:form style="display: inline" rendered="#{catalogUser.catalog.roleName == 'user'}">
-                                        <h:commandButton  value="Edytuj" action="#" />
+                                        <p:commandButton  value="Edytuj" action="#{userListBB.editUser(catalogUser.user)}" />
                                     </h:form>
                                     <h:form style="display: inline" rendered="#{catalogUser.catalog.roleName == 'user'}">
-                                        <h:commandButton value="Usuń" styleClass="primary" action="#{userListBB.deleteUser(catalogUser.user)}" />
+                                        <p:commandButton value="Usuń" styleClass="primary" action="#{userListBB.deleteUser(catalogUser)}" update="usersList"/>
                                     </h:form>
                                 </td>
                             </tr>

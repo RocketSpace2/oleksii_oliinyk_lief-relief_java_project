@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  template="/templates/index.xhtml">
+    <ui:define name="content">
+    <h:panelGroup>
+            <br />
+            <h:panelGroup rendered="#{ordersBB.orders.size() == 0}">
+                <hr />
+                <h3 style="display: flex; align-items: center; justify-content: center;">Brak zamówień</h3>
+                <hr />
+            </h:panelGroup>
+            <h:panelGroup rendered="#{ordersBB.orders.size() > 0}">
+                <ui:repeat var="order" value="#{ordersBB.orders}">
+                    <h:panelGroup>
+                        <hr />
+                        <br />
+                        <h2>Użytkownik</h2>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Login</th>
+                                        <th>Miasto</th>
+                                        <th>Kod pocztowy</th>
+                                        <th>Nazwa ulicy</th>
+                                        <th>Numer ulicy</th>
+                                        <th>Numer lokalu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h:outputText value="#{order.user.login}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{order.user.addres.city}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{order.user.addres.postcode}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{order.user.addres.street}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText value="#{order.user.addres.streetNumber}" />
+                                        </td>
+                                        <td>
+                                            <h:outputText rendered="#{order.user.addres.apartmentNumber != null}" 
+                                                          value="#{order.user.addres.apartmentNumber}" />
+                                            <h:outputText rendered="#{order.user.addres.apartmentNumber == null}" 
+                                                          value="—" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <br />
+                        <h2>Zamówienie</h2>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="display: inline-flex; width: 12.5%;">Zdjęcie</th>
+                                        <th style="display: inline-flex; width: 11%;">Nazwa</th>
+                                        <th style="display: inline-flex; width: 34.5%;">Opis</th>
+                                        <th style="display: inline-flex; width: 12%;">Ilość</th>
+                                        <th style="display: inline-flex;">Cena</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ui:repeat var="orderProduct" value="#{ordersBB.getOrderPorduct(order)}">
+                                        <tr style="display: flex;">
+                                            <td style="display: inline-flex; width: 128px;">
+                                                <img style="border-radius: 5px;" width="100" height="100" src="#{orderProduct.product.image}" alt="" />
+                                            </td>
+                                            <td style="display: inline-flex; width: 115px;">#{orderProduct.product.name}</td>
+                                            
+                                            <td style="display: inline-flex; width: 358px;">
+                                                <h:outputText value="#{fn:length(orderProduct.product.description) > 260 
+                                                       ? fn:substring(orderProduct.product.description, 0, 260).concat('...') 
+                                                       : orderProduct.product.description}" />
+                                            </td>
+                                            <td style="display: inline-flex; width: 122px;">#{orderProduct.amount}</td>
+                                            <td style="display: inline-flex; width: 100px;">#{orderProduct.product.price} zł</td>
+                                        </tr>
+                                    </ui:repeat>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="3" style="display: inline-block; width: 720px;"></td>
+                                        <td style="display: inline-block; width: 97px;">#{order.sum} zł</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <h:form>
+                                <h:commandButton style="display: flex; width: 100%; align-items: center; justify-content: center;" value="Potwierdzić zamówienie" 
+                                                 styleClass="primary"
+                                                 action="#{ordersBB.acceptOrder(order)}"/>
+                            </h:form>
+                        </div>
+                    </h:panelGroup>
+                </ui:repeat>
+            </h:panelGroup>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>

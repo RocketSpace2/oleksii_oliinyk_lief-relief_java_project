@@ -11,7 +11,7 @@
         <br />
 
         <div class="table-wrapper">
-            <h:form id="edit-user">
+            <h:form>
                 <table>
                     <thead>
                         <tr>
@@ -23,36 +23,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <ui:repeat var="row" value="#{userListBB1.users}">
-                            <tr>
-                                <ui:repeat var="entry" value="#{row.entrySet()}">
-                                    <ui:param name="key" value="#{entry.key}" />
-                                    <ui:param name="data" value="#{entry.value}" />
-
-                                    <h:panelGroup>
-                                        <ui:fragment rendered="#{key == 'role_name'}">
-                                            <td>
-                                                <h:selectOneMenu value="#{row.role}">
-                                                    <f:selectItem itemValue="1" itemLabel="Użytkownik" />
-                                                    <f:selectItem itemValue="2" itemLabel="Pracownik" />
-                                                    <f:selectItem itemValue="3" itemLabel="Administrator" />
-                                                </h:selectOneMenu>
-                                            </td>
-                                        </ui:fragment>
-                                        <ui:fragment rendered="#{data == null}">
-                                            <td>—</td>
-                                        </ui:fragment>
-                                        <ui:fragment rendered="#{key != 'role_name' and data != null}">
-                                            <td><h:outputText value="#{data}" /></td>
-                                        </ui:fragment>
-                                    </h:panelGroup>
-                                </ui:repeat>
-
+                        <tr>
+                            <td>
+                                <h:outputText value="#{editUserListBB.catalogUser.user.login}" />
+                            </td>
                                 <td>
-                                    <h:commandButton value="Edytuj" styleClass="primary" action="#{userListBB1.editUser}" />
+                                    <h:selectOneMenu value="#{editUserListBB.changeIdRole}">
+                                        <f:selectItem itemValue="1" itemLabel="Użytkownik" />
+                                        <f:selectItem itemValue="2" itemLabel="Pracownik" />
+                                        <f:selectItem itemValue="3" itemLabel="Administrator" />
+                                    </h:selectOneMenu>
                                 </td>
-                            </tr>
-                        </ui:repeat>
+                                <td>
+                                    <h:outputText value="#{editUserListBB.catalogUser.dateOfActivation}" />
+                                </td>
+                                <td>—</td>
+                            <td>
+                                <p:commandButton value="Edytuj" styleClass="primary" action="#{editUserListBB.editRole()}" />
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </h:form>

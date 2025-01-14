@@ -27,9 +27,8 @@
                 /jakarta.faces.resource : PUBLIC;
                 /public : PUBLIC;
                 /admin : admin;
-                /pages/calc : user, manager, admin;
-                /pages/admin : admin;
-                /pages/manager : admin, manager;
+                /worker : worker;
+                /user : user;
             </param-value>
         </init-param>
     

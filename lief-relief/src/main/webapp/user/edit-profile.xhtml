@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  template="/templates/index.xhtml">
+    <ui:define name="content">
+        <style>
+
+            .custom-file-upload {
+                border-radius: 10px;
+                color: #f56a6a;
+                text-align: center;
+                vertical-align: middle;
+                width: 100%;
+                border: 3px solid #f56a6a;
+                display: inline-block;
+                padding-top: 35%;
+                padding-bottom: 35%;
+                cursor: pointer;
+            }
+
+            .ui-messages-error {
+                all: unset !important;
+            }
+            .ui-messages-error-icon{
+                all: unset !important;
+            }
+
+            .ui-messages-error-summary{
+                all: unset !important;
+            }
+
+            .error{
+                background-color: #f56a6a !important;
+                padding: 0;
+                margin-top: 3em !important;
+                margin-bottom: 1em !important;
+                color: white !important;
+                display: inline-flex !important;
+                border-radius: 15px !important;
+                font-size: 1.1em !important;
+                font-family: 'Roboto Slab', serif !important;
+                list-style: inside;
+
+                ul li{
+                    list-style: inside;
+                    padding: 0;
+                }
+            } 
+        </style>
+        <h:form enctype="multipart/form-data">
+            <p:messages id="msg" class="error" />
+            <section id="banner">
+                <div class="content">
+                    <header>
+                        <span>Login</span>
+                        <p:inputText value="#{profileBB.login}" style="width: 100%;" />
+                        <br />
+
+                        <span>Miasto</span>
+                        <p:inputText value="#{profileBB.city}" style="width: 100%;" />
+                        <br />
+
+                        <span>Kod pocztowy</span>
+                        <p:inputText value="#{profileBB.postcode}" style="width: 100%;" />
+                        <br />
+
+                        <span>Ulica</span>
+                        <p:inputText value="#{profileBB.street}" style="width: 100%;" />
+                        <br />
+
+                        <span>Numer ulicy</span>
+                        <p:inputText value="#{profileBB.streetNumber}" style="width: 100%;" />
+                        <br />
+
+                        <span>Numer lokalu</span>
+                        <p:inputText value="#{profileBB.apartmentNumber}" style="width: 100%;" />
+                        <br />
+
+                        <!-- Submit Button -->
+                        <p:commandButton value="Edytuj" action="#{profileBB.updateProfile}" styleClass="primary" style="width: 100%;" />
+
+                    </header>
+                </div>
+
+                <!-- Image Upload -->
+                <div style="display: flex; width: 50%; padding: 2% 2% 5% 5%;">
+                    <p:fileUpload id="image" mode="simple" value="#{editProductListWorkerBB.uploadedImage}" />
+                </div>
+            </section>  
+        </h:form>
+    </ui:define>
+</ui:composition>

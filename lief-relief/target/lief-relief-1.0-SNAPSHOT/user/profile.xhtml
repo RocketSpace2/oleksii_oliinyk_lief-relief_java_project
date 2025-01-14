@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  template="/templates/index.xhtml">
+    <ui:define name="content">
+        <section id="banner">
+            <div class="content">
+                <header>
+                    <h1>
+                        <h:outputText value="#{loginBB.currentUser.login}" />
+                    </h1>
+                    <span>Miasto: </span>
+                    <h3>
+                        <h:outputText value="#{loginBB.currentUser.addres.city}" />
+                    </h3>
+
+                    <span>Kod pocztowy: </span>
+                    <h3>
+                        <h:outputText value="#{loginBB.currentUser.addres.postcode}" />
+                    </h3>
+
+                    <span>Ulica: </span>
+                    <h3>
+                        <h:outputText value="#{loginBB.currentUser.addres.street}" />
+                    </h3>
+
+                    <span>Numer ulicy: </span>
+                    <h3>
+                        <h:outputText value="#{loginBB.currentUser.addres.streetNumber}" />
+                    </h3>
+
+                    <!-- Conditional rendering for apartment number -->
+                    <h:panelGroup rendered="#{loginBB.currentUser.addres.apartmentNumber != null}">
+                        <span>Numer lokalu: </span>
+                        <h3>
+                            <h:outputText value="#{loginBB.currentUser.addres.apartmentNumber}" />
+                        </h3>
+                    </h:panelGroup>
+                </header>
+
+                <!-- Edit Button -->
+                <h:link outcome="/user/edit-profile-developement" styleClass="button fit primary">
+                    Edytuj
+                </h:link>
+            </div>
+
+            <!-- Profile Image -->
+            <div style="display: flex; width: 50%;">
+                <span class="image object">
+                    <h:panelGroup rendered="#{loginBB.currentUser.image != null}">
+                        <h:graphicImage value="#{loginBB.currentUser.image}" style="display: inline-flex; width: 150%;" alt="Profile Image" />
+                    </h:panelGroup>
+
+                    <h:panelGroup rendered="#{loginBB.currentUser.image == null}">
+                        <h:graphicImage library="template" name="images/default.jpg" style="display: inline-flex; width: 150%;" alt="Default Image" />
+                    </h:panelGroup>
+                </span>
+            </div>
+        </section>
+        <hr class="major" />
+        <h:link outcome="/user/orders" style="display: flex; height: 60px; align-items: center; justify-content: center;"  class="button primary">
+            Zamówienia
+        </h:link>
+    </ui:define>
+</ui:composition>

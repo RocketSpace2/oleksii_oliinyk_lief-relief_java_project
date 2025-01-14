@@ -10,7 +10,49 @@
                 template="/templates/index.xhtml">
     
     <ui:define name="content">
+    <style>
+        .custom-file-upload {
+            border-radius: 10px;
+            color: #f56a6a;
+            text-align: center;
+            vertical-align: middle;
+            width: 100%;
+            border: 3px solid #f56a6a;
+            display: inline-block;
+            padding-top: 35%;
+            padding-bottom: 35%;
+            cursor: pointer;
+        }
 
+        .ui-messages-error {
+            all: unset !important;
+        }
+        .ui-messages-error-icon{
+            all: unset !important;
+        }
+
+        .ui-messages-error-summary{
+            all: unset !important;
+        }
+
+        .error{
+            background-color: #f56a6a !important;
+            padding: 0;
+            margin-top: 3em !important;
+            margin-bottom: 1em !important;
+            color: white !important;
+            display: inline-flex !important;
+            border-radius: 15px !important;
+            font-size: 1.1em !important;
+            font-family: 'Roboto Slab', serif !important;
+            list-style: inside;
+
+            ul li{
+                list-style: inside;
+                padding: 0;
+            }
+        } 
+    </style>
     <!-- Content -->
     <section id="banner">
         <div class="content" style="display: block; width: 50%;">
@@ -21,18 +63,18 @@
             </header>
 
             <h:form id="addProductForm">
-                <h:inputText id="amount"
-                             style="display: inline; width: 25%;"
-                             value=""
-                             required="true"/>
+                <h:inputText id="amount" style="display: inline; width: 25%;" value="#{singleProductBB.amount}" required="true"
+                             requiredMessage="Brak liczby produktu"
+                             converterMessage="Cena musi być liczbą"
+                             validatorMessage="Liczba produktów musi być co najmniej 1">
+                    <f:validateLongRange minimum="1"/>   
+                </h:inputText>
                 <br/><br/>
                 <p:commandButton value="Do koszyka"
                                  style="display: inline-block; width: 100%;"
-                                 action="#"
-                                 process="@form"
-                                 update="@none">
-                    <f:param name="productName" value="#{singleProductBB.product.name}" />
+                                 action="#{singleProductBB.addProduct()}" update="@form">
                 </p:commandButton>
+                <p:messages id="msg" class="error" />
             </h:form>
         </div>
 
@@ -51,7 +93,7 @@
     <hr class="major"/>
 
     <h:link style="display: flex; height: 60px; align-items: center; justify-content: center;"
-            outcome="/public/productList.xhtml"
+            outcome="/public/product-list.xhtml"
             styleClass="button primary"
             value="Katalog produktów" />
     <br/><br/>

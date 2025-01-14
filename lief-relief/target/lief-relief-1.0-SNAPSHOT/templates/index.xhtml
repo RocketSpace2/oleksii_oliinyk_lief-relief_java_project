@@ -56,29 +56,29 @@
                     <nav id="menu">
                         <header class="major">
                             <h2>
-                                <a href="#{yourBean.profileAction}">
+                                <h:link outcome="/user/profile" >
                                     <h:graphicImage library="template" name="images/profile.png" width="12%" height="12%" alt="#" />
-                                    #{yourBean.login != null ? yourBean.login : 'Gość'}
-                                </a>
+                                    #{loginBB.currentUser.login != null ? loginBB.currentUser.login : 'Gość'}
+                                </h:link>
                             </h2>
                             <h2 style="display: inline-block;">
-                                <a href="#{yourBean.shopingCartAction}">
+                                <h:link outcome="/user/shoping-cart" >
                                     <h:graphicImage library="template" name="images/shoping-cart.png" width="12%" height="12%" alt="#" />
-                                    #{yourBean.productAmount != null ? 'Ilość: ' + yourBean.productAmount : 'Pusty'}
-                                </a>
+                                    #{shopingCartBB.order != null ? 'Ilość: '.concat(shopingCartBB.order.orderProductCollection.size()) : 'Pusty'}
+                                </h:link>
                             </h2>
                             <h2>Menu</h2>
                         </header>
                         <ul>
                             <li><h:link outcome="/public/main-page" >strona główna</h:link></li>
                             <ui:fragment rendered="#{loginBB.isInRole('worker')}">
-                                <li><a href="#{yourBean.productsListWorkerAction}">Lista produktów</a></li>
-                                <li><a href="#{yourBean.ordersAction}">Zamówienia</a></li>
+                                <li><h:link outcome="/worker/products-list" >Lista produktów</h:link></li>
+                                <li><h:link outcome="/worker/orders" >Zamówienia</h:link></li>
                             </ui:fragment>
                             <ui:fragment rendered="#{loginBB.isInRole('admin')}">
                                 <li><h:link outcome="/admin/user-list.xhtml" >Użytkownicy</h:link></li>
                             </ui:fragment>
-                            <li><h:link outcome="/public/productList" >produkty</h:link></li>
+                            <li><h:link outcome="/public/product-list" >produkty</h:link></li>
                             <li><h:link outcome="/public/main-page" fragment="about" >o nas</h:link></li>
                         </ul>
                     </nav>

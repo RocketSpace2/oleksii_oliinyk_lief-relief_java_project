@@ -6,6 +6,35 @@
   xmlns:p="http://primefaces.org/ui"
   template="/templates/index.xhtml">
     <ui:define name="content">
+    <style>
+        .ui-messages-error {
+            all: unset !important;
+        }
+        .ui-messages-error-icon{
+            all: unset !important;
+        }
+
+        .ui-messages-error-summary{
+            all: unset !important;
+        }
+
+        .error{
+            background-color: #f56a6a !important;
+            padding: 0;
+            margin-bottom: 1em !important;
+            color: white !important;
+            display: inline-flex !important;
+            border-radius: 15px !important;
+            font-size: 1.1em !important;
+            font-family: 'Roboto Slab', serif !important;
+            list-style: inside;
+
+            ul li{
+                list-style: inside;
+                padding: 0;
+            }
+        } 
+    </style>
         <!-- Content -->
         <section>
             <header class="main">
@@ -13,18 +42,19 @@
             </header>
 
             <hr class="major" />
-
-            <!-- Display Messages -->
-            <h:messages globalOnly="true" styleClass="error" layout="list" />
-
-            <!-- Login Form -->
             <h:form id="loginForm">
+                
+                <p:messages id="msg" class="error"/>
+                <!-- Login Form -->
+            
                 <div class="row gtr-uniform">
                     <div class="col-6 col-12-xsmall">
-                        <p:inputText id="username" value="#{loginBB.login}" placeholder="Login" required="true" />
+                        <p:inputText id="username" value="#{loginBB.login}" placeholder="Login" required="true"
+                                     requiredMessage="Brak loginu"/>
                     </div>
                     <div class="col-6 col-12-xsmall">
-                        <p:password id="password" value="#{loginBB.pass}" placeholder="Password" required="true" />
+                        <p:password id="password" value="#{loginBB.pass}" placeholder="Password" required="true"
+                                    requiredMessage="Brak hasła"/>
                     </div>
                 </div>
 
@@ -32,8 +62,8 @@
                 <div class="actions">
                     <ul class="actions stacked">
                         <li>
-                            <p:commandButton value="Zaloguj się" action="#{loginBB.doLogin(loginBB.login)}" styleClass="primary fit"
-                                             process="loginForm"
+                            <p:commandButton value="Zaloguj się" action="#{loginBB.doLogin(loginBB.login, loginBB.pass)}" styleClass="primary fit"
+                                             update="@form"
                                              style="margin-top: 1.3em" />
                         </li>
                         <li>
