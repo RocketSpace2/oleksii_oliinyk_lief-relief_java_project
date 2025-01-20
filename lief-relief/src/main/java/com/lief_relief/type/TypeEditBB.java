@@ -10,7 +10,6 @@ import jakarta.faces.context.Flash;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.servlet.http.HttpSession;
 
 import com.lief_relief.dao.TypeDAO;
 import com.lief_relief.entities.Type;

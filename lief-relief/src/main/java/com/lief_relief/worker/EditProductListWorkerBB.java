@@ -5,7 +5,6 @@
 package com.lief_relief.worker;
 
 import com.lief_relief.dao.ProductDAO;
-import com.lief_relief.dao.TypeDAO;
 import com.lief_relief.entities.Product;
 import jakarta.ejb.EJB;
 import jakarta.faces.application.FacesMessage;

@@ -8,7 +8,6 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,8 +26,6 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Base64;
 import java.util.Collection;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.file.UploadedFile;
 
 /**
  *

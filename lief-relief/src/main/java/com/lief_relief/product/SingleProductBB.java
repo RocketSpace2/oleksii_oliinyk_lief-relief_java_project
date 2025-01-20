@@ -9,22 +9,15 @@ import com.lief_relief.entities.Order;
 import com.lief_relief.entities.OrderProduct;
 import com.lief_relief.entities.OrderProductPK;
 import com.lief_relief.entities.Product;
-import com.lief_relief.entities.User;
 import com.lief_relief.shoping_cart.ShopingCartBB;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.ejb.EJB;
-import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.context.Flash;
 import jakarta.servlet.http.HttpSession;
-import java.io.IOException;
 
 @Named
 @RequestScoped

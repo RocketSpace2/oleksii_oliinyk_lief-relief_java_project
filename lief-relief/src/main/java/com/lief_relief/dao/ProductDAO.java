@@ -57,7 +57,7 @@ public class ProductDAO {
 			} else {
 				where += "and ";
 			}
-			where += "p.type.idtype = :productType ";
+			where += "p.type.idType = :productType ";
 		}
                 
 		// 2. Create query object

@@ -6,12 +6,15 @@ package com.lief_relief.worker;
 
 import com.lief_relief.dao.ProductDAO;
 import com.lief_relief.entities.Product;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.servlet.http.HttpSession;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +24,8 @@ import java.util.Map;
  * @author oliyn
  */
 @Named
-@RequestScoped
-public class ProductListWorkerBB {
+@ViewScoped
+public class ProductListWorkerBB implements Serializable{
     private static final String PAGE_STAY_AT_THE_SAME = "products-list?faces-redirect=true";
     private static final String PAGE_GO_TO_EDIT_PRODUCT = "edit-product?faces-redirect=true";
 
@@ -34,6 +37,13 @@ public class ProductListWorkerBB {
 
     @EJB
     ProductDAO productDAO;
+    
+    @PostConstruct
+    public void init() {
+        HttpSession session = (HttpSession) extcontext.getSession(true);
+        productName = (String) session.getAttribute("productName");
+        productType = session.getAttribute("productType") != null ? (int) session.getAttribute("productType") : 0;
+    }
 
     public String getProductName() {
             return productName;
@@ -56,7 +66,6 @@ public class ProductListWorkerBB {
 
             if (productName != null && productName.length() > 0){
                     searchParams.put("productName", productName);
-                    searchParams.put("productType", productType);
             }
             
             if (productType != 0){
@@ -79,5 +88,12 @@ public class ProductListWorkerBB {
     public String deleteProduct(Product product){
             productDAO.remove(product);
             return PAGE_STAY_AT_THE_SAME;
+    }
+    
+    public String search(){
+        HttpSession session = (HttpSession) extcontext.getSession(true);
+        session.setAttribute("productName", productName);
+        session.setAttribute("productType", productType);
+        return PAGE_STAY_AT_THE_SAME;
     }
 }

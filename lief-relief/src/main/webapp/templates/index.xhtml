@@ -96,7 +96,7 @@
                         <div class="col-6 col-12-small">
                             <h:form>
                                 <ul class="actions stacked">
-                                    <li><p:commandButton value="Wyloguj się" action="#{loginBB.doLogout()}" 
+                                    <li><h:commandButton value="Wyloguj się" action="#{loginBB.doLogout()}" 
                                                          class="primary primary fit"/></li>
                                 </ul>
                             </h:form>
@@ -133,10 +133,10 @@
         </div>
 
         <!-- Scripts -->
-        <h:outputScript library="js" name="jquery.min.js" />
-        <h:outputScript library="js" name="browser.min.js" />
-        <h:outputScript library="js" name="breakpoints.min.js" />
-        <h:outputScript library="js" name="util.js" />
-        <h:outputScript library="js" name="main.js" />
+        <h:outputScript library="template" name="js/jquery.min.js" />
+        <h:outputScript library="template" name="js/browser.min.js" />
+        <h:outputScript library="template" name="js/breakpoints.min.js" />
+        <h:outputScript library="template" name="js/util.js" />
+        <h:outputScript library="template" name="js/main.js" />
     </h:body>
 </html>

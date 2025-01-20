@@ -6,6 +6,7 @@
   xmlns:p="http://primefaces.org/ui"
   xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   template="/templates/index.xhtml">
     <ui:define name="content">
         <h2>Lista produktów</h2>
@@ -14,17 +15,17 @@
         <section id="search" class="alt" style='padding-bottom: 0'>
             <h:form id="product_search" style="display: inline-block; width: 45%;">
                 <p:inputText id="query" value="#{productListWorkerBB.productName}" placeholder="Nazwa produktu" style="width: 100%;" />
+                <div style="position: absolute; top: 0;left: 33em;width: 100%;">
+                    <span>Typ produktu</span>
+                    <h:selectOneMenu id="type" value="#{productListWorkerBB.productType}" style="display: inline-block; width: 40%;" >
+                        <f:selectItem itemValue="0" itemLabel=" — " />
+                        <f:selectItem itemValue="1" itemLabel="Środki ochrony roślin" />
+                        <f:selectItem itemValue="2" itemLabel="Nawozy" />
+                        <f:selectItem itemValue="3" itemLabel="Nasiona" />
+                    </h:selectOneMenu>
+                    <p:commandButton value="Wyszukaj" styleClass="primary" action="#{productListWorkerBB.search()}" style="margin-left: 10px;" />
+                </div>
             </h:form>
-            <div style="display: inline-block; width: 54%; vertical-align: 5%;">
-                <span>Typ produktu</span>
-                <h:selectOneMenu id="type" value="#{productListWorkerBB.productType}" style="display: inline-block; width: 40%;" >
-                    <f:selectItem itemValue="0" itemLabel=" — " />
-                    <f:selectItem itemValue="1" itemLabel="Środki ochrony roślin" />
-                    <f:selectItem itemValue="2" itemLabel="Nawozy" />
-                    <f:selectItem itemValue="3" itemLabel="Nasiona" />
-                </h:selectOneMenu>
-                <p:commandButton value="Wyszukaj" styleClass="primary" update="productTable" style="margin-left: 10px;" />
-            </div>
         </section>
 
         
@@ -45,7 +46,7 @@
                     </thead>
                     <tbody>
                         <!-- Loop through catalog_users -->
-                        <ui:repeat var="product" value="#{productListWorkerBB.list}">
+                        <c:forEach var="product" items="#{productListWorkerBB.list}">
                             <tr>
                                 <td style="display: inline-flex; vertical-align: text-top;">
                                     <img src="#{product.image}" alt="Produkt" style="border-radius: 5px;" width="100" height="100" />
@@ -73,7 +74,7 @@
                                     </h:form>
                                 </td>
                             </tr>
-                        </ui:repeat>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>

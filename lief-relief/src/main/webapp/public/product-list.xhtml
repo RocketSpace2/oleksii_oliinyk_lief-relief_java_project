@@ -13,57 +13,45 @@
         <!-- Products Section -->
         <section id="products">
 
-            
-            <!-- Search Section -->
-            <section id="search" class="alt">
-                <h:form id="product_search" style="display: inline-block; width: 70%;">
-                    <p:inputText id="query" value="#{productListBB.productName}" 
-                                 style="width: 100%;" 
-                                 placeholder="Nazwa produktu" />    
-                </h:form>
-                <p:commandButton class="primary" style="display: inline-block; width: 20%; padding-bottom: 0%; vertical-align: 5%; margin-left: 0.75em"
-                                     value="Wyszukaj" update="productList" process="product_search" />
-
-            </section>
-
-            <hr class="major" />
-
             <!-- Product List -->
             <h:panelGroup id="productList">
-                <div class="posts" >
-                    <c:forEach var="product" items="#{productListBB.list}">
-                        <article>
-                            <!--<h:form>-->
-                                <a style="display: block; width: 35%; margin-left: auto; margin-right: auto;" 
-                                   class="image">
-                                    <img src="#{product.image}"/>
-                                </a>
-                                <div style="display: inline-block; width: 100%;">
-                                    <h3 style="display: inline-block; width: 35%;">#{product.name}</h3>
-                                    <div style="display: inline-block; width: 64%;">
-                                        <span style="text-align: right; display: inline-block; width: 100%;">
-                                            Cena: <strong style="font-size: 1.15em;">#{product.price} zł</strong>
-                                        </span>
-                                        <span style="text-align: right; display: inline-block; width: 100%;">
-                                            Typ: <strong style="font-size: 1.15em;">#{product.type.typeName}</strong>
-                                        </span>
+                <p:dataTable var="product" value="#{productListBB.lazyModel}" paginator="true" rows="2"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="2,4,8"
+                     id="customerTable">
+                    <div class="posts" >
+                        <p:column headerText="Name" filterBy="#{product.name}">
+                            <article>
+                                    <a style="display: block; width: 35%; margin-left: auto; margin-right: auto;" 
+                                       class="image">
+                                        <img src="#{product.image}"/>
+                                    </a>
+                                    <div style="display: inline-block; width: 100%;">
+                                        <h3 style="display: inline-block; width: 35%;">#{product.name}</h3>
+                                        <div style="display: inline-block; width: 64%;">
+                                            <span style="text-align: right; display: inline-block; width: 100%;">
+                                                Cena: <strong style="font-size: 1.15em;">#{product.price} zł</strong>
+                                            </span>
+                                            <span style="text-align: right; display: inline-block; width: 100%;">
+                                                Typ: <strong style="font-size: 1.15em;">#{product.type.typeName}</strong>
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                                <br />
-                                <br />
-                                <h:outputText value="#{fn:length(product.description) > 260 
-                                                       ? fn:substring(product.description, 0, 260).concat('...') 
-                                                       : product.description}" />
-                                <ul class="actions">
-                                    <li>
-                                        <p:commandButton value="więcej" style="margin-right: 0.5em"
-                                                        action="#{productListBB.showProduct(product)}"/>
-                                    </li>
-                                </ul>
-<!--                            </h:form>-->
-                        </article>
-                    </c:forEach>
-                </div>
+                                    <br />
+                                    <br />
+                                    <h:outputText value="#{fn:length(product.description) > 260 
+                                                           ? fn:substring(product.description, 0, 260).concat('...') 
+                                                           : product.description}" />
+                                    <ul class="actions">
+                                        <li>
+                                            <p:commandButton value="więcej" style="margin-right: 0.5em"
+                                                            action="#{productListBB.showProduct(product)}"/>
+                                        </li>
+                                    </ul>
+                            </article>
+                        </p:column>
+                    </div>
+                </p:dataTable>    
             </h:panelGroup>
         </section>
     </ui:define>

@@ -6,6 +6,7 @@
   xmlns:p="http://primefaces.org/ui"
   xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   template="/templates/index.xhtml">
     <ui:define name="content">
         <style>
@@ -29,90 +30,80 @@
                 background-color: #f56a6a;
             }
         </style>
-        <h:form>
-            <h:panelGroup>
-                <br />
-                <h2>Koszyk</h2>
-                <br />
+        
+            <br />
+            <h2>Koszyk</h2>
+            <br />
 
-                <div class="table-wrapper">
-                    <h:panelGroup rendered="#{shopingCartBB.order == null}">
-                        <hr />
-                        <h2 style="display: flex; align-items: center; justify-content: center;">Koszyk jest pusty</h2>
-                        <hr class="major" />
-                        <h:link outcome="/public/product-list" style="display: flex; height: 60px; align-items: center; justify-content: center;" styleClass="button primary">
-                            Katalog produktów
-                        </h:link>
-                    </h:panelGroup>
+            <div class="table-wrapper">
+                <c:if test="#{shopingCartBB.order == null}">
+                    <hr />
+                    <h2 style="display: flex; align-items: center; justify-content: center;">Koszyk jest pusty</h2>
+                    <hr class="major" />
+                    <h:link outcome="/public/product-list" style="display: flex; height: 60px; align-items: center; justify-content: center;" styleClass="button primary">
+                        Katalog produktów
+                    </h:link>
+                </c:if>
 
-                    <h:panelGroup rendered="#{shopingCartBB.order != null}">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th style="display: inline-flex; width: 12.5%;">Zdjęcie</th>
-                                    <th style="display: inline-flex; width: 11%;">Nazwa</th>
-                                    <th style="display: inline-flex; width: 34.5%;">Opis</th>
-                                    <th style="display: inline-flex; width: 12%;">Ilość</th>
-                                    <th style="display: inline-flex;">Cena</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <ui:repeat var="orderProduct" value="#{shopingCartBB.order.orderProductCollection}">
-                                    <tr style="display: flex;">
-                                        <td style="display: inline-flex; width: 128px;">
-                                            <img style="border-radius: 5px;" width="100" height="100" src="#{orderProduct.product.image}" alt="Produkt" />
-                                        </td>
-                                        <td style="display: inline-flex; width: 115px;">
-                                            <h:outputText value="#{orderProduct.product.name}" />
-                                        </td>
-                                        <td style="display: inline-flex; width: 358px;">
-                                            <h:outputText value="#{fn:length(orderProduct.product.description) > 260 
-                                                   ? fn:substring(orderProduct.product.description, 0, 260).concat('...') 
-                                                   : orderProduct.product.description}" />
-                                        </td>
-                                        <td style="display: inline-flex; width: 122px;">
-                                            <h:outputText value="#{orderProduct.amount}" />
-                                        </td>
-                                        <td style="display: inline-flex; width: 100px;">
-                                            <h:outputText value="#{orderProduct.product.price} zł" />
-                                        </td>
-                                        <td style="display: inline-flex; width: 180px; align-items: center; justify-content: center;">
+                <c:if test="#{shopingCartBB.order != null}">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="display: inline-flex; width: 11%;">Nazwa</th>
+                                <th style="display: inline-flex; width: 34.5%;">Opis</th>
+                                <th style="display: inline-flex; width: 12%;">Ilość</th>
+                                <th style="display: inline-flex;">Cena</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="orderProduct" items="#{shopingCartBB.order.orderProductCollection}">
+                                <tr style="display: flex;">
+                                    <td style="display: inline-flex; width: 115px;">
+                                        <h:outputText value="#{orderProduct.product.name}" />
+                                    </td>
+                                    <td style="display: inline-flex; width: 358px;">
+                                        <h:outputText value="#{fn:length(orderProduct.product.description) > 260 
+                                               ? fn:substring(orderProduct.product.description, 0, 260).concat('...') 
+                                               : orderProduct.product.description}" />
+                                    </td>
+                                    <td style="display: inline-flex; width: 122px;">
+                                        <h:outputText value="#{orderProduct.amount}" />
+                                    </td>
+                                    <td style="display: inline-flex; width: 100px;">
+                                        <h:outputText value="#{orderProduct.product.price} zł" />
+                                    </td>
+                                    <td style="display: inline-flex; width: 180px; align-items: center; justify-content: center;">
+                                        <h:form style="display: flex;">
                                             <!-- Minus Button -->
-                                            <p:commandButton styleClass="custom"  update="@form" action="#{shopingCartBB.decreaseAmount(orderProduct)}">
-                                                <h:graphicImage library="template" name="images/minus.png"  width="80%" alt="Minus" />
-                                            </p:commandButton>
+                                            <p:commandButton value="–" styleClass="custom" action="#{shopingCartBB.decreaseAmount(orderProduct)}"/>
 
                                             <!-- Plus Button -->
-                                            <p:commandButton styleClass="custom"  update="@form" action="#{shopingCartBB.increaseAmount(orderProduct)}">
-                                                <h:graphicImage library="template" name="images/plus.png" width="100%" alt="Plus" />
-                                            </p:commandButton>
+                                            <p:commandButton value="+" styleClass="custom" action="#{shopingCartBB.increaseAmount(orderProduct)}"/>
 
                                             <!-- Delete Button -->
-                                            <p:commandButton styleClass="custom background"  update="@form" action="#{shopingCartBB.deleteProduct(orderProduct)}">
-                                                <h:graphicImage library="template" name="images/trash-bucket.png" width="80%" alt="Usuń" />
-                                            </p:commandButton>
-                                        </td>
-                                    </tr>
-                                </ui:repeat>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="3" style="display: inline-block; width: 720px;"></td>
-                                    <td style="display: inline-block; width: 97px;">
-                                        <h:outputText value="#{shopingCartBB.order.sum} zł" />
-                                    </td>
-                                    <td style="display: inline-block; text-align: right;">
-                                        <h:form>
-                                            <h:commandButton value="Złożyć zamówienie" action="#{shopingCartBB.placeOrder()}" styleClass="primary" />
+                                            <p:commandButton value="Delete" styleClass="custom" action="#{shopingCartBB.deleteProduct(orderProduct)}"/>
                                         </h:form>
                                     </td>
                                 </tr>
-                            </tfoot>
-                        </table>
-                    </h:panelGroup>
-                </div>
-            </h:panelGroup>
-        </h:form>   
+                            </c:forEach>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" style="display: inline-block; width: 720px;"></td>
+                                <td style="display: inline-block; width: 97px;">
+                                    <h:outputText value="#{shopingCartBB.order.sum} zł" />
+                                </td>
+                                <td style="display: inline-block; text-align: right;">
+                                    <h:form>
+                                        <h:commandButton value="Złożyć zamówienie" action="#{shopingCartBB.placeOrder()}" styleClass="primary" />
+                                    </h:form>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </c:if>
+            </div>
+           
     </ui:define>
 </ui:composition>

@@ -12,10 +12,8 @@ import jakarta.faces.context.Flash;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.servlet.http.HttpSession;
 
 import com.lief_relief.entities.Product;
-import jakarta.faces.event.ValueChangeEvent;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import org.primefaces.model.file.UploadedFile;

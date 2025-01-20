@@ -1,13 +1,10 @@
 package com.lief_relief.dao;
 
 import com.lief_relief.entities.State;
-import java.util.List;
-import java.util.Map;
 
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
 
 //DAO - Data Access Object for Person entity
 //Designed to serve as an interface between higher layers of application and data.

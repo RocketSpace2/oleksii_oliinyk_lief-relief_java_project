@@ -10,11 +10,12 @@ import com.lief_relief.dao.OrderProductDAO;
 import com.lief_relief.dao.StateDAO;
 import com.lief_relief.entities.Order;
 import com.lief_relief.entities.OrderProduct;
-import com.lief_relief.entities.Product;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,8 +26,10 @@ import java.util.Map;
  * @author oliyn
  */
 @Named
-@RequestScoped
-public class ShopingCartBB {
+@ViewScoped
+public class ShopingCartBB implements Serializable{
+    private static final String PAGE_STAY_AT_THE_SAME = "shoping-cart?faces-redirect=true";
+    
     private Order order;
     
     @EJB
@@ -66,23 +69,27 @@ public class ShopingCartBB {
         return new ArrayList<>(order.getOrderProductCollection());
     }
     
-    public void decreaseAmount(OrderProduct orderProduct){
+    public String decreaseAmount(OrderProduct orderProduct){
         if(orderProduct.getAmount() > 1){
             int amount = orderProduct.getAmount();
             orderProduct.setAmount(--amount);
         }
         
         orderProductDAO.merge(orderProduct);
+        
+        return PAGE_STAY_AT_THE_SAME;
     }  
     
-    public void increaseAmount(OrderProduct orderProduct){
+    public String increaseAmount(OrderProduct orderProduct){
         int amount = orderProduct.getAmount();
         orderProduct.setAmount(++amount);
         
         orderProductDAO.merge(orderProduct);
+        
+        return PAGE_STAY_AT_THE_SAME;
     }  
     
-    public void deleteProduct(OrderProduct orderProduct){
+    public String deleteProduct(OrderProduct orderProduct){
         order.getOrderProductCollection().remove(orderProduct);
         orderDAO.merge(order);
         
@@ -92,10 +99,14 @@ public class ShopingCartBB {
         if(orderProductDAO.getList(searchParams).isEmpty()){
             orderDAO.remove(orderDAO.find(order.getIdOrder()));
         }
+        
+        return PAGE_STAY_AT_THE_SAME;
     }
     
-    public void placeOrder(){
+    public String placeOrder(){
         order.setState(stateDAO.find(2));
         orderDAO.merge(order);
+        
+        return PAGE_STAY_AT_THE_SAME;
     }
 }

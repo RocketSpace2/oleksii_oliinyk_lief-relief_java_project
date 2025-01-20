@@ -6,6 +6,7 @@ com\lief_relief\dao\UserDAO.class
 com\lief_relief\dao\StateDAO.class
 com\lief_relief\entities\Order.class
 com\lief_relief\dao\CatalogUserPKDAO.class
+com\lief_relief\lazy\LazyCustomerDataModel.class
 com\lief_relief\worker\EditProductListWorkerBB.class
 com\lief_relief\product\ProductEditBB.class
 com\lief_relief\authentication\LoginBB.class

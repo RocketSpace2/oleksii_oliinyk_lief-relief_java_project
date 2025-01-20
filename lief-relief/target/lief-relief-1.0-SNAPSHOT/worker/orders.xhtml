@@ -67,7 +67,6 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th style="display: inline-flex; width: 12.5%;">Zdjęcie</th>
                                         <th style="display: inline-flex; width: 11%;">Nazwa</th>
                                         <th style="display: inline-flex; width: 34.5%;">Opis</th>
                                         <th style="display: inline-flex; width: 12%;">Ilość</th>
@@ -78,9 +77,6 @@
                                 <tbody>
                                     <ui:repeat var="orderProduct" value="#{ordersBB.getOrderPorduct(order)}">
                                         <tr style="display: flex;">
-                                            <td style="display: inline-flex; width: 128px;">
-                                                <img style="border-radius: 5px;" width="100" height="100" src="#{orderProduct.product.image}" alt="" />
-                                            </td>
                                             <td style="display: inline-flex; width: 115px;">#{orderProduct.product.name}</td>
                                             
                                             <td style="display: inline-flex; width: 358px;">

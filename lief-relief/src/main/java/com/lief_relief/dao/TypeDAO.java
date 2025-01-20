@@ -7,8 +7,6 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-
-import com.lief_relief.entities.Product;
 import com.lief_relief.entities.Type;
 
 //DAO - Data Access Object for Person entity
